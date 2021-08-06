@@ -209,6 +209,7 @@ Sarà l'applicazione che analizzerà la struttura del valore che si intende inse
 
 ![Tabella](https://upload.wikimedia.org/wikipedia/commons/5/5b/KeyValue.PNG)
 
+
 ### Document-Based
 
 Questo modello di DB si basa sul concetto di documento.
@@ -224,6 +225,35 @@ come coppie (K-V), vengono supportati più valori per lo stesso attributo.
 > tags: ['aaa','bbb']\
 > }
 
+_Esempi di script per la connessione e l'esecuzione di query in MongoDB_
+
+In Java è necessario aggiungere le dipendenze sul proprio file pom.
+
+#### Python
+~~~
+python -m pip install dnspython
+
+from pymongo import MongoClient
+
+class Connect(object):
+    @staticmethod    
+    def get_connection():
+        return MongoClient("mongodb://$[username]:$[password]@$[hostlist]/$[database]?authSource=$[authSource]")
+
+from connect import Connect
+from pymongo import MongoClient
+
+connection = Connect.get_connection()
+~~~
+#### Java
+~~~
+final String uriString = "mongodb://$[username]:$[password]@$[hostlist]/$[database]?authSource=$[authSource]";
+    MongoClient mongoClient = MongoClients.create(uriString);
+
+final String uriString = "mongodb://$[username]:$[password]@$[hostlist]/$[database]?authSource=$[authSource]";
+    MongoClientURI uri = new MongoClientURI(uriString);
+    MongoClient mongoClient = new MongoClient(uri);
+~~~
 ### Graph-DB
 Il DB è basato sul modello di grafo, sono presenti nodi e archi.
 
@@ -238,7 +268,7 @@ e del nodo destinazione, inoltre possiede degli attributi.
 _Esempi di script per la connessione e l'esecuzione di query in Neo4J_
 
 In Java è necessario aggiungere le dipendenze sul proprio file pom.
-### Python
+#### Python
 ~~~
 # pip3 install neo4j-driver
 # python3 example.py
@@ -260,7 +290,7 @@ with driver.session(database="neo4j") as session:
 
 driver.close()
 ~~~
-### Java
+#### Java
 ~~~
 import org.neo4j.driver.*;
 import static org.neo4j.driver.Values.parameters;
