@@ -283,10 +283,6 @@ public class Example {
         tx -> tx.run(cypherQuery, 
                 parameters("category","Dairy Products"))
             .list());
-
-      for (Record record : result) {
-        System.out.println(record.get("product").asString());
-      }
     }
     driver.close();
   }
