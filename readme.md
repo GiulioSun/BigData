@@ -104,6 +104,39 @@ astratte.
 
 ___
 ## SPARK
+Piattaforma open source, è stata progettata per elaborare grandi volumi di dati velocemente.
+Spark non include un sistema per la gestione dei dati proprio per questo viene distribuito su Hadoop.
+
+__Caratteristiche di Spark__
+- Scalabilità. 
+- Fault tolerant.
+- Dispone di Api per Java, Scala, Python e R.
+- Esegue i calcoli in memoria, per tale motivo risulta essere molto più veloce di Hadoop.
+- Possiede componenti integrate per gestire workload come _Machine Learning_, _calcoli sui grafi_ etc..
+
+In Spark è possibile eseguire operazioni tramite le RDD (Resilient Distributed Dataset), questa è una collection di elementi 
+che possono essere elaborati parallelamente, la partizione del Dataset avviene su ogni nodo del cluster ed è possibile elaborarli
+parallelamente.
+Questa collection inoltre è tollerante ai guasti, infatti se un nodo cade, questo non ha effetto sugli altri.
+
+Di seguito sono riportate le componenti di alto livello:
+- Spark Sql
+- Spark Streaming
+- MLib
+- GraphX
+
+!['Spark components'](https://image.slidesharecdn.com/spark2-171008044051/95/spark-core-2-638.jpg?cb=1507437673)
+
+Le applicazioni Spark sono eseguiti come un insieme indipendenti di processi sul cluster.
+Il programma driver, che contiene la funzione _main_, contiene un riferimento all'oggetto __SparkContext__, questo permette
+che avvenga la connessione a uno dei cluster Manager.
+La prima operazione che viene eseguita dal cluster Manager è l'acquisizione degli executors che sono deputati a eseguire i 
+calcoli ed effettuare i salvataggi.
+Gli executors sono delle istanze della JVM che girano all'interno dei worker.
+Nel driver avviene anche la suddivisione del programma in tsk. Il programma viene definito come un DAG (_direct acyclic graph_)
+cioè come un grafo di operazioni.
+La conversione del DAG in fasi permette l'esecuzione dei task. I Worker possiedono i blocchi per la gestione dei dati che 
+solitamente sono RDD.
 
 ___
 ## DB Distribuiti
