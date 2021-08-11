@@ -11,11 +11,14 @@ o piu delle tre caratteristiche riportate di seguito:
 *Per big data quindi si intende quel tipo di dati che risultano difficili da gestire
 e analizzare utilizzando le tecnologie di gestione dei dati tradizionali, ovvero RDBMS.*
 
-Sono diverse le tipologie di dato che si presentano idonei per la definizione di Big data,
-nel nostro caso utilizzeremo categorie di dati afferenti alle seguenti aree:
+Sono diverse le tipologie di dato che si presentano idonei per la definizione di Big data:
 
-* Financial data
-* Social Network
+- Financial data
+- Social Network
+- Health data
+- Web server log
+- Banking data
+
 
 ___
 

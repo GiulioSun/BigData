@@ -1,16 +1,19 @@
-# This is a sample Python script.
+from pyspark import SparkConf, SparkContext
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+conf = (SparkConf()
+         .setMaster("local[*]")
+         .setAppName("My example app")
+         .set("spark.executor.memory", "1g"))
+sc = SparkContext(conf = conf)
+
+rdd1 = sc.textFile("data/La divina commedia.txt")
+rdd2 = rdd1.flatMap(lambda x: x.split(" "))
+rdd3 = rdd2.map(lambda x: x.lower())
+rdd4 = rdd3.map(lambda x: x.replace("'", "").replace(".", "").replace("!", "").replace("?", "").replace(":", ""))
+rdd5 = rdd4.map(lambda x: (x, 1))
+rdd6 = rdd5.reduceByKey(lambda x, y: x + y)
+rdd7 = rdd6.map(lambda x: (x[1], x[0]))
+rdd8 = rdd7.sortByKey(False)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
